@@ -1,0 +1,44 @@
+.idea
+
+# Automatically generated files
+.DS_Store
+/cache
+/libraries
+/versions
+
+# Server config
+/usercache.json
+/banned-ips.json
+/banned-players.json
+/ops.json
+/whitelist.json
+/permissions.yml
+/.console_history
+
+# World
+/world
+/world_nether
+/world_the_end
+/logs
+
+# Plugin automatically generated files
+plugins/LuckPerms/libs
+plugins/WorldEdit/.archive-unpack
+plugins/UltimateTimber/locales
+plugins/LuckPerms/translations
+plugins/FurnitureLib/models
+plugins/CMILib/Translations
+plugins/SignEdit/locales
+
+# Plugin sensitive config
+plugins/bStats/config.yml
+plugins/Residence/Save
+plugins/Residence/Backup
+plugins/FurnitureLib/furniture.db
+plugins/PluginHelper/config.yml
+plugins/PluginMetrics/config.yml
+plugins/FurnitureLib/ignoredPlayers.yml
+plugins/CoreProtect/.license
+plugins/CoreProtect/database.db
+plugins/Citizens/saves.yml
+plugins/Yum/*.log
