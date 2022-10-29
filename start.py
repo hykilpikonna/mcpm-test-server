@@ -91,7 +91,7 @@ if __name__ == '__main__':
 
     # Auto Restart
     while True:
-        os.system(f'{JAVA} -Xmx{MAX_RAM} -Xms{MIN_RAM} -jar {jar} nogui')
+        os.system(f'{JAVA} -Xmx{MAX_RAM} -Xms{MIN_RAM} --add-modules=jdk.incubator.vector -jar {jar} nogui')
 
         print('Server stopped, restarting in 5s\nPress any key to stop the server.')
         i, o, e = select.select([sys.stdin], [], [], 5)
