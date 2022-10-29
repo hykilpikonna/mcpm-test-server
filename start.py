@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 
+import argparse
 import os
 import re
 import shutil
@@ -11,7 +13,6 @@ import hypy_utils
 import requests
 import select
 
-JAVA = '/usr/local/opt/openjdk@17/bin/java'
 MAX_RAM = '4096M'
 MIN_RAM = MAX_RAM
 TIME = 5
@@ -75,6 +76,12 @@ def update_plugins():
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(prog='start.py', description='Minecraft server starter')
+    parser.add_argument('-j', '--java', help='Path to the Java executable.')
+    parser.add_argument('--no-update', action='store_true', help='Disable auto update')
+    args = parser.parse_args()
+
+    java = args.java or 'java'
 
     # Find server jar
     jar = ''
@@ -87,11 +94,12 @@ if __name__ == '__main__':
             jar = f
             break
 
-    jar = update_server(jar, version_re.findall(jar))
+    if not args.no_update:
+        jar = update_server(jar, version_re.findall(jar))
 
     # Auto Restart
     while True:
-        os.system(f'{JAVA} -Xmx{MAX_RAM} -Xms{MIN_RAM} --add-modules=jdk.incubator.vector -jar {jar} nogui')
+        os.system(f'{java} -Xmx{MAX_RAM} -Xms{MIN_RAM} --add-modules=jdk.incubator.vector -jar {jar} nogui')
 
         print('Server stopped, restarting in 5s\nPress any key to stop the server.')
         i, o, e = select.select([sys.stdin], [], [], 5)
